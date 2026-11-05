@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เงินของฉัน | Money Note</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap');
+:root{--bg:#f5f6fa;--panel:#fff;--ink:#202536;--muted:#8991a5;--line:#edf0f5;--purple:#7165e8;--purple2:#eeeaff;--green:#1eaa78;--red:#e56b78;--shadow:0 12px 35px #252b4210}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Kanit',sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:0}
+.app{display:flex;min-height:100vh}.sidebar{width:245px;background:#fff;border-right:1px solid var(--line);padding:27px 17px;display:flex;flex-direction:column;gap:28px;flex-shrink:0}.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.brand-icon{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#8177f5,#5f55d5);display:grid;place-items:center;color:white;font-size:22px}.brand strong{font-size:19px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:-4px}.nav-label{font-size:11px;color:#a4a9b8;letter-spacing:1px;padding:0 12px;margin-bottom:8px}.nav{display:grid;gap:7px}.nav button{width:100%;display:flex;align-items:center;gap:12px;padding:12px 13px;border-radius:12px;background:transparent;color:#72798c;text-align:left;font-size:14px}.nav button.active,.nav button:hover{background:var(--purple2);color:var(--purple);font-weight:500}.nav .ico{font-size:18px;width:22px;text-align:center}.profile{margin-top:auto;background:#f8f8fc;border-radius:14px;padding:13px;display:flex;gap:10px;align-items:center}.avatar{width:36px;height:36px;border-radius:12px;background:#dedaff;color:#665bdb;display:grid;place-items:center;font-weight:600}.profile small{display:block;color:var(--muted);font-size:11px}.main{flex:1;min-width:0;padding:34px 38px;max-width:1500px;margin:auto;width:100%}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}.top h1{font-size:25px;margin:0;font-weight:600}.top p{color:var(--muted);margin:3px 0 0;font-size:13px}.date-chip{background:#fff;border:1px solid var(--line);padding:9px 14px;border-radius:12px;color:#737b8e;font-size:13px}.view{display:none}.view.active{display:block}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:22px}.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:19px 20px;box-shadow:var(--shadow)}.stat-head{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}.stat-icon{width:35px;height:35px;border-radius:11px;display:grid;place-items:center;background:#f1efff;font-size:17px}.amount{font-size:25px;font-weight:600;margin-top:12px;letter-spacing:.2px}.amount small{font-size:13px;color:var(--muted);font-weight:400}.green{color:var(--green)}.red{color:var(--red)}.section-head{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}.section-head h2{font-size:17px;margin:0}.muted{color:var(--muted);font-size:12px}.btn{background:var(--purple);color:white;padding:10px 16px;border-radius:11px;font-size:13px;box-shadow:0 5px 12px #7165e833}.btn.secondary{background:#f0efff;color:var(--purple);box-shadow:none}.btn.ghost{background:#f5f6fa;color:#6f778a;box-shadow:none}.toolbar{display:flex;gap:9px;flex-wrap:wrap}.list{display:grid;gap:10px}.entry{display:flex;align-items:center;gap:13px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);cursor:grab}.entry:active{cursor:grabbing}.entry.dragging{opacity:.45}.entry-icon{width:40px;height:40px;border-radius:13px;background:#f2f0ff;display:grid;place-items:center;font-size:18px;flex-shrink:0}.entry-info{flex:1;min-width:0}.entry-info strong{font-size:14px;font-weight:500;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.entry-info small{color:var(--muted);font-size:11px}.entry-amount{font-weight:600;font-size:14px;white-space:nowrap}.entry-actions{display:flex;gap:5px}.mini{background:#f5f6fa;color:#81899b;border-radius:8px;padding:7px 9px;font-size:12px}.empty{text-align:center;padding:45px 15px;color:var(--muted);background:#fff;border:1px dashed #dfe2eb;border-radius:15px}.empty b{display:block;color:#596174;font-size:14px;margin-bottom:5px}.grid2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:18px}.folder-area{background:#fff;border:1px solid var(--line);border-radius:16px;padding:19px;min-height:160px}.folder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px;margin-bottom:18px}.folder{background:#fafaff;border:1px solid #eeedfb;border-radius:13px;padding:14px;cursor:pointer}.folder:hover,.folder.selected{border-color:#a49cf5;background:#f2f0ff}.folder .ficon{font-size:23px}.folder strong{display:block;font-size:13px;margin-top:7px}.folder small{color:var(--muted);font-size:11px}.drop-hint{font-size:12px;color:#969caf;margin:10px 0}.form-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}.form-card h3{margin:0 0 15px;font-size:16px}.field{display:grid;gap:6px;margin-bottom:13px}.field label{font-size:12px;color:#727a8d}.field input,.field select{width:100%;border:1px solid #e7e9f0;border-radius:10px;padding:10px 11px;outline:none;background:#fff;color:var(--ink)}.field input:focus,.field select:focus{border-color:#a49cf5;box-shadow:0 0 0 3px #7165e817}.seg{display:flex;background:#f3f4f8;padding:4px;border-radius:10px;margin-bottom:14px}.seg button{flex:1;padding:8px;border-radius:8px;background:transparent;color:#82899a;font-size:12px}.seg button.active{background:#fff;color:var(--purple);box-shadow:0 2px 7px #252b4210}.balance-big{font-size:34px;font-weight:600;margin:12px 0}.balance-box{background:linear-gradient(135deg,#7165e8,#9188f5);color:#fff;border-radius:17px;padding:22px;margin-bottom:17px}.balance-box small{opacity:.8}.balance-box .balance-big{margin:5px 0}.balance-box p{font-size:12px;opacity:.8;margin:0}.hidden{display:none!important}.modal-back{position:fixed;inset:0;background:#17182b77;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal-back.show{display:flex}.modal{background:#fff;border-radius:18px;padding:23px;width:min(420px,100%);box-shadow:0 20px 60px #1113}.modal h2{font-size:19px;margin:0 0 5px}.modal p{color:var(--muted);font-size:12px;margin:0 0 18px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#25283a;color:#fff;padding:10px 16px;border-radius:11px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:10}.toast.show{opacity:1}.mobile-menu{display:none}
+@media(max-width:850px){.sidebar{width:205px}.main{padding:25px 20px}.cards{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+@media(max-width:600px){.app{display:block}.sidebar{width:100%;height:auto;padding:12px 14px;display:block;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:0 4px}.sidebar .nav-label,.sidebar .profile{display:none}.nav{display:flex;margin-top:12px;gap:5px}.nav button{justify-content:center;padding:9px 6px;font-size:11px;gap:5px;flex:1}.nav .ico{font-size:15px;width:auto}.main{padding:22px 14px}.top h1{font-size:21px}.date-chip{font-size:11px;padding:8px}.cards{gap:9px}.card{padding:14px}.amount{font-size:20px}.stat-head{font-size:11px}.entry{padding:11px;gap:9px}.entry-actions .mini{padding:6px}.entry-amount{font-size:12px}}
+
+.music-player{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:7px 10px;border-radius:12px;box-shadow:var(--shadow)}
+.music-player button{background:var(--purple2);color:var(--purple);border-radius:9px;padding:7px 10px;font-size:12px}
+.music-player .music-name{font-size:11px;color:var(--muted);max-width:125px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.music-player input[type=range]{width:65px;accent-color:var(--purple)}
+.music-player input[type=file]{display:none}
+@media(max-width:600px){.top{gap:8px;align-items:flex-start}.music-player{flex-wrap:wrap;justify-content:flex-end}.music-player .music-name{display:none}.music-player input[type=range]{width:48px}}
+
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-icon">฿</div><div><strong>Money Note</strong><small>จัดการเงินให้ง่ายขึ้น</small></div></div>
+  <div><div class="nav-label">เมนูหลัก</div><nav class="nav">
+    <button class="active" data-view="notes"><span class="ico">📝</span> จดรายการ</button>
+    <button data-view="money"><span class="ico">💰</span> นับเงิน</button>
+    <button data-view="folders"><span class="ico">📁</span> โฟลเดอร์</button>
+  </nav></div>
+  <div class="profile"><div class="avatar" id="avatar">U</div><div><strong id="profileName">ผู้ใช้งาน</strong><small>ข้อมูลบันทึกในอุปกรณ์นี้</small></div></div>
+</aside>
+<main class="main">
+  <header class="top"><div><h1 id="pageTitle">จดรายการ</h1><p id="pageSub">บันทึกรายรับและรายจ่ายของคุณ</p></div><div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end">
+    <div class="music-player">
+      <button id="musicToggle" type="button">▶ เล่นเพลง</button>
+      <span class="music-name" id="musicName">ยังไม่ได้เลือกเพลง</span>
+      <label for="musicFile" class="btn secondary" style="padding:7px 9px;font-size:11px;cursor:pointer">เลือก MP3</label>
+      <input id="musicFile" type="file" accept="audio/mpeg,audio/mp3,.mp3">
+      <input id="musicVolume" type="range" min="0" max="1" step="0.05" value="0.35" title="ระดับเสียง">
+    </div>
+    <div class="date-chip" id="today"></div>
+  </div></header>
+  <audio id="backgroundMusic" loop preload="none"></audio>
+
+  <section class="view active" id="view-notes">
+    <div class="cards">
+      <div class="card"><div class="stat-head">ยอดเงินคงเหลือ <span class="stat-icon">💳</span></div><div class="amount" id="statBalance">฿0</div></div>
+      <div class="card"><div class="stat-head">รายรับทั้งหมด <span class="stat-icon">📈</span></div><div class="amount green" id="statIncome">฿0</div></div>
+      <div class="card"><div class="stat-head">รายจ่ายทั้งหมด <span class="stat-icon">📉</span></div><div class="amount red" id="statExpense">฿0</div></div>
+    </div>
+    <div class="section-head"><div><h2>รายการที่จดไว้</h2><div class="muted">ลากรายการไปวางในโฟลเดอร์ได้</div></div><button class="btn" id="addEntryBtn">＋ เพิ่มรายการ</button></div>
+    <div class="toolbar" style="margin-bottom:13px"><button class="btn secondary" id="filterAll">ทั้งหมด</button><button class="btn ghost" id="filterIncome">รายรับ</button><button class="btn ghost" id="filterExpense">รายจ่าย</button></div>
+    <div class="list" id="entryList"></div>
+  </section>
+
+  <section class="view" id="view-money">
+    <div class="grid2">
+      <div>
+        <div class="balance-box"><small>เงินคงเหลือปัจจุบัน</small><div class="balance-big" id="moneyBalance">฿0.00</div><p>คำนวณจากเงินตั้งต้น + รายรับ − รายจ่าย</p></div>
+        <div class="form-card"><h3>ตั้งค่าเงินที่มีอยู่</h3><div class="field"><label>จำนวนเงินเริ่มต้น (บาท)</label><input type="number" id="startingAmount" min="0" step="0.01" placeholder="เช่น 1000"></div><button class="btn" id="saveStarting">บันทึกจำนวนเงิน</button></div>
+      </div>
+      <div class="form-card"><h3>สรุปยอดทั้งหมด</h3><div class="field"><label>รายรับรวม</label><div class="amount green" id="moneyIncome">฿0</div></div><hr style="border:0;border-top:1px solid var(--line);margin:15px 0"><div class="field"><label>รายจ่ายรวม</label><div class="amount red" id="moneyExpense">฿0</div></div><hr style="border:0;border-top:1px solid var(--line);margin:15px 0"><div class="field"><label>เงินตั้งต้น</label><div class="amount" id="moneyStart">฿0</div></div></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-folders">
+    <div class="section-head"><div><h2>โฟลเดอร์ของฉัน</h2><div class="muted">จัดกลุ่มรายการให้เป็นระเบียบ</div></div><button class="btn" id="newFolderBtn">＋ สร้างโฟลเดอร์</button></div>
+    <div class="folder-area"><div class="folder-grid" id="folderGrid"></div><div class="drop-hint">💡 ลากรายการจากหน้าจดมาวางบนโฟลเดอร์ หรือเปิดโฟลเดอร์เพื่อดูรายการ</div><div id="folderContents"></div></div>
+  </section>
+</main>
+</div>
+
+<div class="modal-back" id="nameModal"><div class="modal"><h2>ยินดีต้อนรับ 👋</h2><p>ตั้งชื่อโปรไฟล์ของคุณ เพื่อแยกและบันทึกข้อมูลรายการไว้ในชื่อนี้บนอุปกรณ์นี้</p><div class="field"><label>ชื่อของคุณ</label><input id="nameInput" maxlength="30" placeholder="เช่น น้องมะลิ"></div><div class="modal-actions"><button class="btn" id="saveName">เริ่มใช้งาน</button></div></div></div>
+<div class="modal-back" id="entryModal"><div class="modal"><h2 id="entryModalTitle">เพิ่มรายการ</h2><p>ใส่รายละเอียดรายรับหรือรายจ่ายของคุณ</p>
+  <div class="seg"><button class="active" data-kind="expense">รายจ่าย</button><button data-kind="income">รายรับ</button></div>
+  <div class="field"><label>ชื่อรายการ / ซื้ออะไรหรือได้เงินจากอะไร</label><input id="entryTitle" maxlength="80" placeholder="เช่น ซื้อข้าว / เงินค่าขนม"></div>
+  <div class="field"><label>จำนวนเงิน (บาท)</label><input id="entryValue" type="number" min="0.01" step="0.01" placeholder="0.00"></div>
+  <div class="field"><label>วันที่</label><input id="entryDate" type="date"></div>
+  <div class="field"><label>โฟลเดอร์</label><select id="entryFolder"></select></div>
+  <div class="modal-actions"><button class="btn ghost" id="cancelEntry">ยกเลิก</button><button class="btn" id="saveEntry">บันทึกรายการ</button></div>
+</div></div>
+<div class="modal-back" id="folderModal"><div class="modal"><h2>สร้างโฟลเดอร์ใหม่</h2><p>ตั้งชื่อโฟลเดอร์เพื่อแยกรายการ</p><div class="field"><label>ชื่อโฟลเดอร์</label><input id="folderName" maxlength="35" placeholder="เช่น ค่าอาหาร, เงินเก็บ"></div><div class="modal-actions"><button class="btn ghost" id="cancelFolder">ยกเลิก</button><button class="btn" id="saveFolder">สร้างโฟลเดอร์</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const today=new Date().toISOString().slice(0,10);
+$('today').textContent=new Date().toLocaleDateString('th-TH',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+let currentName='',data=null,kind='expense',filter='all',editingId=null,selectedFolder='all';
+const defaultData=()=>({starting:0,entries:[],folders:[{id:'general',name:'ทั่วไป'}]});
+const keyFor=name=>'moneynote_profile_'+name.trim().toLowerCase();
+function money(n){return '฿'+Number(n||0).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function totals(){let income=data.entries.filter(x=>x.kind==='income').reduce((s,x)=>s+x.value,0);let expense=data.entries.filter(x=>x.kind==='expense').reduce((s,x)=>s+x.value,0);return{income,expense,balance:data.starting+income-expense}}
+function save(){if(currentName)localStorage.setItem(keyFor(currentName),JSON.stringify(data));render()}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2100)}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showView(v){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));$('view-'+v).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.view===v));const titles={notes:['จดรายการ','บันทึกรายรับและรายจ่ายของคุณ'],money:['นับเงิน','ดูยอดเงินและตั้งค่าเงินเริ่มต้น'],folders:['โฟลเดอร์','จัดระเบียบรายการของคุณ']};$('pageTitle').textContent=titles[v][0];$('pageSub').textContent=titles[v][1];if(v==='folders')renderFolders()}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
+function render(){if(!data)return;const t=totals();$('statBalance').textContent=money(t.balance);$('statIncome').textContent=money(t.income);$('statExpense').textContent=money(t.expense);$('moneyBalance').textContent=money(t.balance);$('moneyIncome').textContent=money(t.income);$('moneyExpense').textContent=money(t.expense);$('moneyStart').textContent=money(data.starting);$('startingAmount').value=data.starting;
+let rows=data.entries.filter(x=>filter==='all'||x.kind===filter).sort((a,b)=>b.date.localeCompare(a.date));$('entryList').innerHTML=rows.length?rows.map(x=>`<div class="entry" draggable="true" data-id="${x.id}"><div class="entry-icon">${x.kind==='income'?'💵':'🧾'}</div><div class="entry-info"><strong>${escapeHTML(x.title)}</strong><small>${new Date(x.date+'T00:00:00').toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'})} · ${escapeHTML(data.folders.find(f=>f.id===x.folder)?.name||'ทั่วไป')}</small></div><div class="entry-amount ${x.kind==='income'?'green':'red'}">${x.kind==='income'?'+':'−'}${money(x.value)}</div><div class="entry-actions"><button class="mini edit" title="แก้ไข">แก้ไข</button><button class="mini delete" title="ลบ">ลบ</button></div></div>`).join(''):'<div class="empty"><b>ยังไม่มีรายการ</b>กด “เพิ่มรายการ” เพื่อเริ่มจดรายรับรายจ่าย</div>';
+document.querySelectorAll('.entry').forEach(el=>{el.addEventListener('dragstart',e=>{el.classList.add('dragging');e.dataTransfer.setData('text/plain',el.dataset.id)});el.addEventListener('dragend',()=>el.classList.remove('dragging'));el.querySelector('.delete').onclick=()=>{if(confirm('ต้องการลบรายการนี้หรือไม่?')){data.entries=data.entries.filter(x=>x.id!==el.dataset.id);save();toast('ลบรายการแล้ว')}};el.querySelector('.edit').onclick=()=>openEntry(el.dataset.id)})}
+function renderFolders(){const grid=$('folderGrid');grid.innerHTML=data.folders.map(f=>`<div class="folder ${selectedFolder===f.id?'selected':''}" data-folder="${f.id}" draggable="true"><div class="ficon">📁</div><strong>${escapeHTML(f.name)}</strong><small>${data.entries.filter(x=>x.folder===f.id).length} รายการ</small></div>`).join('')+`<div class="folder ${selectedFolder==='all'?'selected':''}" data-folder="all"><div class="ficon">🗂️</div><strong>ทุกรายการ</strong><small>${data.entries.length} รายการ</small></div>`;
+grid.querySelectorAll('.folder').forEach(el=>{el.onclick=()=>{selectedFolder=el.dataset.folder;renderFolders()};el.ondragover=e=>{e.preventDefault();el.classList.add('selected')};el.ondragleave=()=>el.classList.remove('selected');el.ondrop=e=>{e.preventDefault();const id=e.dataTransfer.getData('text/plain');const entry=data.entries.find(x=>x.id===id);if(entry&&el.dataset.folder!=='all'){entry.folder=el.dataset.folder;save();renderFolders();toast('ย้ายรายการเข้าโฟลเดอร์แล้ว')}}});
+const entries=selectedFolder==='all'?data.entries:data.entries.filter(x=>x.folder===selectedFolder);$('folderContents').innerHTML=`<div class="section-head" style="margin-top:20px"><h2>${selectedFolder==='all'?'รายการทั้งหมด':escapeHTML(data.folders.find(f=>f.id===selectedFolder)?.name||'โฟลเดอร์')}</h2><span class="muted">${entries.length} รายการ</span></div>`+(entries.length?`<div class="list">${entries.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<div class="entry"><div class="entry-icon">${x.kind==='income'?'💵':'🧾'}</div><div class="entry-info"><strong>${escapeHTML(x.title)}</strong><small>${new Date(x.date+'T00:00:00').toLocaleDateString('th-TH')}</small></div><div class="entry-amount ${x.kind==='income'?'green':'red'}">${x.kind==='income'?'+':'−'}${money(x.value)}</div></div>`).join('')}</div>`:'<div class="empty">ยังไม่มีรายการในโฟลเดอร์นี้</div>')}
+function openEntry(id=null){editingId=id;const x=id?data.entries.find(e=>e.id===id):null;kind=x?.kind||'expense';$('entryModalTitle').textContent=x?'แก้ไขรายการ':'เพิ่มรายการ';$('entryTitle').value=x?.title||'';$('entryValue').value=x?.value??'';$('entryDate').value=x?.date||today;$('entryFolder').innerHTML=data.folders.map(f=>`<option value="${f.id}">${escapeHTML(f.name)}</option>`).join('');$('entryFolder').value=x?.folder||data.folders[0].id;document.querySelectorAll('[data-kind]').forEach(b=>b.classList.toggle('active',b.dataset.kind===kind));$('entryModal').classList.add('show')}
+$('addEntryBtn').onclick=()=>openEntry();$('cancelEntry').onclick=()=>$('entryModal').classList.remove('show');
+document.querySelectorAll('[data-kind]').forEach(b=>b.onclick=()=>{kind=b.dataset.kind;document.querySelectorAll('[data-kind]').forEach(x=>x.classList.toggle('active',x===b))});
+$('saveEntry').onclick=()=>{const title=$('entryTitle').value.trim(),value=Number($('entryValue').value),date=$('entryDate').value;if(!title||!date||!Number.isFinite(value)||value<=0){toast('กรุณากรอกข้อมูลให้ครบและถูกต้อง');return}const item={id:editingId||String(Date.now()),title,value,kind,date,folder:$('entryFolder').value};if(editingId)data.entries=data.entries.map(x=>x.id===editingId?item:x);else data.entries.push(item);$('entryModal').classList.remove('show');save();toast('บันทึกรายการแล้ว')};
+$('saveStarting').onclick=()=>{const n=Number($('startingAmount').value);if(!Number.isFinite(n)||n<0){toast('กรุณาใส่จำนวนเงินให้ถูกต้อง');return}data.starting=n;save();toast('บันทึกเงินตั้งต้นแล้ว')};
+$('newFolderBtn').onclick=()=>$('folderModal').classList.add('show');$('cancelFolder').onclick=()=>$('folderModal').classList.remove('show');
+$('saveFolder').onclick=()=>{const name=$('folderName').value.trim();if(!name){toast('กรุณาใส่ชื่อโฟลเดอร์');return}if(data.folders.some(f=>f.name.toLowerCase()===name.toLowerCase())){toast('มีชื่อโฟลเดอร์นี้แล้ว');return}data.folders.push({id:'f'+Date.now(),name});$('folderName').value='';$('folderModal').classList.remove('show');save();renderFolders();toast('สร้างโฟลเดอร์แล้ว')};
+$('filterAll').onclick=()=>setFilter('all');$('filterIncome').onclick=()=>setFilter('income');$('filterExpense').onclick=()=>setFilter('expense');function setFilter(v){filter=v;[['filterAll','all'],['filterIncome','income'],['filterExpense','expense']].forEach(([id,k])=>$(id).className='btn '+(v===k?'secondary':'ghost'));render()}
+function start(){const profiles=Object.keys(localStorage).filter(k=>k.startsWith('moneynote_profile_'));if(!profiles.length){$('nameModal').classList.add('show');return}const last=localStorage.getItem('moneynote_last');if(last&&localStorage.getItem(keyFor(last))){loadProfile(last)}else{$('nameModal').classList.add('show')}}
+function loadProfile(name){currentName=name;try{data=JSON.parse(localStorage.getItem(keyFor(name)))||defaultData()}catch{data=defaultData()}if(!data.folders)data.folders=defaultData().folders;if(!data.entries)data.entries=[];$('profileName').textContent=name;$('avatar').textContent=name.charAt(0).toUpperCase();localStorage.setItem('moneynote_last',name);$('nameModal').classList.remove('show');render()}
+$('saveName').onclick=()=>{const name=$('nameInput').value.trim();if(!name){toast('กรุณาตั้งชื่อก่อนเริ่มใช้งาน');return}loadProfile(name);toast('เปิดโปรไฟล์ '+name+' แล้ว')};
+
+// เพลง: รองรับไฟล์ music/background.mp3 บน Vercel และเลือก MP3 จากเครื่องได้
+const audio=$('backgroundMusic');
+let chosenMusicUrl=null;
+const DB_NAME='MoneyNoteMusicDB', STORE='tracks';
+function openMusicDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>req.result.createObjectStore(STORE);req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+async function saveMusicBlob(blob,name){try{const db=await openMusicDB();await new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put({blob,name},'userTrack');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});db.close()}catch(e){console.warn('บันทึกเพลงในอุปกรณ์ไม่ได้',e)}}
+async function loadSavedMusic(){try{const db=await openMusicDB();const item=await new Promise((resolve,reject)=>{const req=db.transaction(STORE).objectStore(STORE).get('userTrack');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)});db.close();if(item?.blob){setMusicSource(URL.createObjectURL(item.blob),item.name);return true}}catch(e){console.warn(e)}return false}
+function setMusicSource(url,name){if(chosenMusicUrl)URL.revokeObjectURL(chosenMusicUrl);chosenMusicUrl=url;audio.src=url;$('musicName').textContent=name||'background.mp3';$('musicToggle').textContent='▶ เล่นเพลง'}
+$('musicFile').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;if(!file.name.toLowerCase().endsWith('.mp3')){toast('กรุณาเลือกไฟล์ MP3');return}await saveMusicBlob(file,file.name);setMusicSource(URL.createObjectURL(file),file.name);toast('เพิ่มเพลงแล้ว เพลงจะถูกเก็บไว้ในเบราว์เซอร์นี้');e.target.value=''});
+$('musicToggle').onclick=async()=>{if(!audio.src){toast('เลือกไฟล์ MP3 ก่อน หรือใส่ music/background.mp3 ในโปรเจกต์');return}if(audio.paused){try{await audio.play();$('musicToggle').textContent='⏸ หยุดเพลง'}catch(e){toast('เบราว์เซอร์ไม่อนุญาตให้เล่นเพลง กรุณากดเล่นอีกครั้ง')}}else{audio.pause();$('musicToggle').textContent='▶ เล่นเพลง'}};
+$('musicVolume').oninput=e=>audio.volume=Number(e.target.value);
+audio.volume=.35;
+(async()=>{const loaded=await loadSavedMusic();if(!loaded){audio.src='./music/background.mp3';audio.addEventListener('error',()=>{$('musicName').textContent='ยังไม่ได้ใส่ไฟล์เพลง'},{once:true});$('musicName').textContent='background.mp3 (ถ้ามี)'}})();
+
+start();
+</script>
+</body>
+</html>
